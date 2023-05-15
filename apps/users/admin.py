@@ -12,7 +12,7 @@ class UserAdmin(BaseUserAdmin):
     model = User
     list_display = ['pkid', 'id', 'email', 'username', 'first_name', 'last_name', 'is_staff', 'is_active']
     list_display_links = ['id', 'email']
-    list_filter = ['email', 'username ', 'first_name', 'last_name', 'is_staff', 'is_active']
+    # list_filter = ['email', 'username ', 'first_name', 'last_name', 'is_staff', 'is_active']
     fieldsets = (
         (
             _('Login Credentials'),
