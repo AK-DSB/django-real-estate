@@ -116,16 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # USE_L10N = True
 
 # USE_TZ = False
-# zh-CN / en-us
-LANGUAGE_CODE = 'zh-CN'
-
-TIME_ZONE = 'Asia/Shanghai'
-
-USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = False
+USE_I18N = True
+USE_L10N = True
+TIME_ZONE = "Asia/Shanghai"
+LANGUAGE_CODE = "zh-hans"
 
 
 # Static files (CSS, JavaScript, Images)
