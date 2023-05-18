@@ -19,7 +19,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ['username', 'first_name', 'last_name', 'full_name', 'email',
                   'id', 'phone_number', 'profile_photo', 'about_me', 'license',
                   'gender', 'country', 'city', 'is_buyer', 'is_seller', 'is_agent',
-                  'rating', 'num_reviews', 'vewviews', 'top_agent']
+                  'rating', 'num_reviews', 'reviews', 'top_agent']
 
     def get_full_name(self, obj):
         first_name = obj.user.first_name.title()
