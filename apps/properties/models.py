@@ -90,10 +90,10 @@ class Property(TimeStampedUUIDModel):
 
 class PropertyViews(TimeStampedUUIDModel):
     ip = models.CharField(verbose_name=_('IP Address'), max_length=250)
-    propery = models.ForeignKey(Property, related_name='property_views', on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, related_name='property_views', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Total views on - {self.propery.title} is - {self.propery.views} views(s)'
+        return f'Total views on - {self.property.title} is - {self.property.views} views(s)'
 
     class Meta:
         verbose_name = 'Total views on Property'

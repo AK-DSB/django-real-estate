@@ -72,7 +72,7 @@ class PropertyDetailView(APIView):
 
     def get(self, request, slug):
         print(slug)
-        propery = Property.objects.get(slug=slug)
+        property = Property.objects.get(slug=slug)
 
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -82,8 +82,8 @@ class PropertyDetailView(APIView):
 
         if not PropertyViews.objects.filter(property=property, ip=ip).exists():
             PropertyViews.objects.create(property=property, ip=ip)
-            propery.views += 1
-            propery.save()
+            property.views += 1
+            property.save()
 
         serializer = PropertySerializer(property, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
