@@ -19,7 +19,7 @@ RUN apt-get update \
     && apt-get install -y gettext \
     && apt-get install -y netcat gcc postgresql \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir ~/.pip
 RUN echo "[global]" > ~/.pip/pip.conf
