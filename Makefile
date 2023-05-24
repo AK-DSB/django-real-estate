@@ -36,7 +36,7 @@ volume:
 	docker volume inspect estate-src_postgres_data
 
 estate-db:
-	docker compose exec postgres-db psql --username=admin --dbname=estate
+	docker compose exec postgres-db psql --username=postgres --dbname=estate
 
 test:
 	docker compose exec api pytest -p no:warnings --cov=.
@@ -49,4 +49,19 @@ flake8:
 
 black-check:
 	docker compose exec api black --check --exclude=migrations .
+
+black-diff:
+	docker compose exec api black --diff --exclude=migrations .
+
+black:
+	docker compose exec api black --exclude=migrations .
+
+index-check:
+	docker compose exec api isort . --check-only --skip env --skip migrations
+
+isort-diff:
+	docker compose exec api isort . --diff --skip env --skip migrations
+
+isort:
+	docker compose exec api isort . --skip env --skip migrations
 
