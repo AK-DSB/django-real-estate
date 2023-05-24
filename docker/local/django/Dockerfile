@@ -1,4 +1,4 @@
-FROM python:3.10.0-slim-buster
+FROM akwdsb/python:3.10
 
 ENV APP_HOME=/app
 RUN mkdir $APP_HOME
@@ -13,13 +13,13 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update \
-    && apt-get install -y build_essential \
-    && apt-get install -y libpq-dev \
-    && apt-get install -y gettext \
-    && apt-get install -y netcat gcc postgresql \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update \
+#    && apt-get install -y build_essential \
+#    && apt-get install -y libpq-dev \
+#    && apt-get install -y gettext \
+#    && apt-get install -y netcat gcc postgresql \
+#    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+#    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir ~/.pip
 RUN echo "[global]" > ~/.pip/pip.conf
@@ -37,5 +37,13 @@ RUN chmod +x /entrypoint
 COPY ./docker/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
+
+COPY ./docker/local/django/celery/worker/start /start-celeryworker
+RUN sed -i 's/\s$//g' /start-celeryworker
+RUN chmod +x /start-celeryworker
+
+COPY ./docker/local/django/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower
+RUN chmod +x /start-flower
 
 ENTRYPOINT ["/entrypoint"]
